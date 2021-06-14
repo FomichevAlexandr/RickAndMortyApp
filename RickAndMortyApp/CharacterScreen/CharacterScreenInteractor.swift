@@ -7,57 +7,77 @@
 
 import Foundation
 
+protocol ICharacterScreenInteractor
+{
+    func getModel() -> [CharacterModel]
+    func getModelWithNewCharacter(completion: @escaping ([CharacterModel]) -> Void)
+}
+
 final class CharacterScreenInteractor
 {
     private let networkManager: INetworkmanager
     private var urlString = "https://rickandmortyapi.com/api/character/"
-    private var characterURLs: [String]?
+    private var characters: [CharacterModel]
+
+    init(networkManager: INetworkmanager) {
+        self.characters = []
+        self.networkManager = networkManager
+        
+    }
     
-    private func loadCharacter(characterURL: String) {
+//    private func downloadCharacters(from characterURLs: [String]?) {
+//        if let urls = characterURLs {
+//            for url in urls {
+//                if let character = loadCharacter(characterURL: url) {
+//                    self.characters.append(character)
+//                }
+//            }
+//        }
+//    }
+    //TODO; обработка ошибок
+    private func loadCharacter(completion: @escaping ([CharacterModel]) -> Void, characterURL: String) {
         self.networkManager.loadCharacter(urlString: characterURL, modelType: CharacterModel.self, completion: { [weak self] result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let character):
-                    self?.loadImage(character: character)
+                    self?.loadImage(completion: completion, character: character)
                 case .failure(let error):
                     print(error)
-                    switch error {
-                    case NetworkError.urlError:
-                        print(error)
-                    case NetworkError.getDataError:
-                        print(error)
-                    case NetworkError.decodeError:
-                        print(error)
-                    default:
-                        print(error)
-                    }
+                    
                 }
-            }
         })
     }
     
     //TODO: Посмотреть на обработку ошибок
-    private func loadImage(character: CharacterModel) {
+    private func loadImage(completion: @escaping ([CharacterModel]) -> Void, character: CharacterModel) {
         self.networkManager.loadImage(urlString: character.image, completion: {[weak self] result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let characterLocationURL):
                     character.locationPath = characterLocationURL
                     self?.characters.append(character)
-                    self?.updateView()
+                    if let characters = self?.characters{
+                        completion(characters)
+                    }
                 case .failure(let error):
                     print(error)
-                    switch error {
-                    case NetworkError.urlError:
-                        print(error)
-                    case NetworkError.downloadError:
-                        print(error)
-                    default:
-                        print(error)
-                    }
                 }
-            }
-            
         })
     }
+}
+
+extension CharacterScreenInteractor: ICharacterScreenInteractor
+{
+    func getModel() -> [CharacterModel] {
+        return self.characters
+    }
+    
+    func getModelWithNewCharacter(completion: @escaping ([CharacterModel]) -> Void) {
+        self.loadCharacter(completion: completion, characterURL: self.getRandomCharacterURL())
+    }
+    
+    private func getRandomCharacterURL() -> String {
+        let randomNumber = Int.random(in: 1...671)
+        let characterURL = self.urlString + String(randomNumber)
+        return characterURL
+    }
+    
 }

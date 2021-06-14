@@ -26,6 +26,7 @@
 		A158915026776F82006D263F /* LocationScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158914F26776F82006D263F /* LocationScreenAssembly.swift */; };
 		A15891562677704A006D263F /* MainScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15891552677704A006D263F /* MainScreenAssembly.swift */; };
 		A158915B2677BAF1006D263F /* CharacterScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158915A2677BAF1006D263F /* CharacterScreenInteractor.swift */; };
+		A158915E2677FC3E006D263F /* LocationScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158915D2677FC3E006D263F /* LocationScreenInteractor.swift */; };
 		A18BDC07267464E700CCD3C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18BDC06267464E700CCD3C4 /* AppDelegate.swift */; };
 		A18BDC09267464E700CCD3C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18BDC08267464E700CCD3C4 /* SceneDelegate.swift */; };
 		A18BDC0E267464E700CCD3C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18BDC0C267464E700CCD3C4 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		A158914F26776F82006D263F /* LocationScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenAssembly.swift; sourceTree = "<group>"; };
 		A15891552677704A006D263F /* MainScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenAssembly.swift; sourceTree = "<group>"; };
 		A158915A2677BAF1006D263F /* CharacterScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScreenInteractor.swift; sourceTree = "<group>"; };
+		A158915D2677FC3E006D263F /* LocationScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenInteractor.swift; sourceTree = "<group>"; };
 		A18BDC03267464E700CCD3C4 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18BDC06267464E700CCD3C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A18BDC08267464E700CCD3C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				A158913D26772BF6006D263F /* LocationScreenPresenter.swift */,
 				A158914326772C94006D263F /* LocationScreenViewModel.swift */,
 				A158914626772D99006D263F /* LocationScreenTableAdapter.swift */,
+				A158915D2677FC3E006D263F /* LocationScreenInteractor.swift */,
 			);
 			path = LocationScreen;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				A158911826749C1C006D263F /* ColorExtension.swift in Sources */,
 				A1589100267477BD006D263F /* CharacterScreenView.swift in Sources */,
 				A158912A26763E01006D263F /* CharacterScreenAssembly.swift in Sources */,
+				A158915E2677FC3E006D263F /* LocationScreenInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

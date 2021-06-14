@@ -12,74 +12,23 @@ protocol ICharacterScreenPresenter {
 
 final class CharacterScreenPresenter
 {
-    private var characters: [CharacterModel]
     private weak var characterView: ICharacterScreenView?
-    private let networkManager: INetworkmanager
-    private var urlString = "https://rickandmortyapi.com/api/character/"
-    private var characterURLs: [String]?
+    private var interactor: ICharacterScreenInteractor
     
-    init(networkManager: INetworkmanager, characterURLs: [String]? = nil) {
-        self.characters = []
-        self.networkManager = networkManager
-        self.characterURLs = characterURLs
+    init(interactor: ICharacterScreenInteractor) {
+        self.interactor = interactor
     }
     
-    //TODO: Посмотреть на weak self
-    private func loadCharacter(characterURL: String) {
-        self.networkManager.loadCharacter(urlString: characterURL, modelType: CharacterModel.self, completion: { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let character):
-                    self?.loadImage(character: character)
-                case .failure(let error):
-                    print(error)
-                    switch error {
-                    case NetworkError.urlError:
-                        print(error)
-                    case NetworkError.getDataError:
-                        print(error)
-                    case NetworkError.decodeError:
-                        print(error)
-                    default:
-                        print(error)
-                    }
-                }
-            }
-        })
+    private func updateView(characters: [CharacterModel]) {
+        DispatchQueue.main.async {
+            let charactersViewModel = self.getConverteModel(characters: characters)
+            self.characterView?.update(vm: charactersViewModel)
+        }
     }
     
-    //TODO: Посмотреть на обработку ошибок
-    private func loadImage(character: CharacterModel) {
-        self.networkManager.loadImage(urlString: character.image, completion: {[weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let characterLocationURL):
-                    character.locationPath = characterLocationURL
-                    self?.characters.append(character)
-                    self?.updateView()
-                case .failure(let error):
-                    print(error)
-                    switch error {
-                    case NetworkError.urlError:
-                        print(error)
-                    case NetworkError.downloadError:
-                        print(error)
-                    default:
-                        print(error)
-                    }
-                }
-            }
-            
-        })
-    }
-    
-    private func updateView() {
-        self.characterView?.update(vm: self.getConverteModel())
-    }
-    
-    private func getConverteModel() -> [CharacterScreenViewModel] {
+    private func getConverteModel(characters: [CharacterModel]) -> [CharacterScreenViewModel] {
         var model = [CharacterScreenViewModel]()
-        for character in self.characters {
+        for character in characters {
             if let locationPath = character.locationPath {
                 do {
                     let data = try Data(contentsOf: locationPath)
@@ -106,26 +55,11 @@ extension CharacterScreenPresenter: ICharacterScreenPresenter
     func viewDidLoad(characterScreenView: ICharacterScreenView) {
         self.characterView = characterScreenView
         self.characterView?.completeButtonAction { [weak self] in
-            if let characterURL = self?.getRandomCharacterURL() {
-                self?.loadCharacter(characterURL: characterURL)
-            }
+            self?.interactor.getModelWithNewCharacter(completion: { characters in
+                self?.updateView(characters: characters)
+            })
         }
-        self.loadCharacters()
+        self.updateView(characters: self.interactor.getModel())
     }
-    
-    private func getRandomCharacterURL() -> String {
-        let randomNumber = Int.random(in: 1...671)
-        let characterURL = self.urlString + String(randomNumber)
-        return characterURL
-    }
-    
-    private func loadCharacters() {
-        if let characterURLs = self.characterURLs {
-            for characterURL in characterURLs {
-                self.loadCharacter(characterURL: characterURL)
-            }
-        } else {
-            return
-        }
-    }
+
 }
