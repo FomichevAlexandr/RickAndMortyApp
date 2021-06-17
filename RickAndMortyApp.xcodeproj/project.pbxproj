@@ -27,6 +27,10 @@
 		A15891562677704A006D263F /* MainScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15891552677704A006D263F /* MainScreenAssembly.swift */; };
 		A158915B2677BAF1006D263F /* CharacterScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158915A2677BAF1006D263F /* CharacterScreenInteractor.swift */; };
 		A158915E2677FC3E006D263F /* LocationScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158915D2677FC3E006D263F /* LocationScreenInteractor.swift */; };
+		A158916226780353006D263F /* RMDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A158916026780353006D263F /* RMDataBase.xcdatamodeld */; };
+		A158916526780695006D263F /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158916426780695006D263F /* CoreDataStorage.swift */; };
+		A158916826780832006D263F /* ILocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158916726780832006D263F /* ILocationStorage.swift */; };
+		A158916B26780841006D263F /* ICharacterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158916A26780841006D263F /* ICharacterStorage.swift */; };
 		A18BDC07267464E700CCD3C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18BDC06267464E700CCD3C4 /* AppDelegate.swift */; };
 		A18BDC09267464E700CCD3C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18BDC08267464E700CCD3C4 /* SceneDelegate.swift */; };
 		A18BDC0E267464E700CCD3C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18BDC0C267464E700CCD3C4 /* Main.storyboard */; };
@@ -58,6 +62,10 @@
 		A15891552677704A006D263F /* MainScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenAssembly.swift; sourceTree = "<group>"; };
 		A158915A2677BAF1006D263F /* CharacterScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScreenInteractor.swift; sourceTree = "<group>"; };
 		A158915D2677FC3E006D263F /* LocationScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenInteractor.swift; sourceTree = "<group>"; };
+		A158916126780353006D263F /* RMDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RMDataBase.xcdatamodel; sourceTree = "<group>"; };
+		A158916426780695006D263F /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
+		A158916726780832006D263F /* ILocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILocationStorage.swift; sourceTree = "<group>"; };
+		A158916A26780841006D263F /* ICharacterStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICharacterStorage.swift; sourceTree = "<group>"; };
 		A18BDC03267464E700CCD3C4 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18BDC06267464E700CCD3C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A18BDC08267464E700CCD3C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +125,25 @@
 			path = LocationScreen;
 			sourceTree = "<group>";
 		};
+		A158916D26780858006D263F /* Storages */ = {
+			isa = PBXGroup;
+			children = (
+				A158916726780832006D263F /* ILocationStorage.swift */,
+				A158916A26780841006D263F /* ICharacterStorage.swift */,
+				A158916E2678086C006D263F /* CoreData */,
+			);
+			path = Storages;
+			sourceTree = "<group>";
+		};
+		A158916E2678086C006D263F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A158916426780695006D263F /* CoreDataStorage.swift */,
+				A158916026780353006D263F /* RMDataBase.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		A18BDBFA267464E700CCD3C4 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +178,7 @@
 				A158911726749C1C006D263F /* ColorExtension.swift */,
 				A158911A2674BD2D006D263F /* NetworkManager.swift */,
 				A15891552677704A006D263F /* MainScreenAssembly.swift */,
+				A158916D26780858006D263F /* Storages */,
 			);
 			path = RickAndMortyApp;
 			sourceTree = "<group>";
@@ -286,14 +314,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A158916526780695006D263F /* CoreDataStorage.swift in Sources */,
 				A158911B2674BD2D006D263F /* NetworkManager.swift in Sources */,
 				A158913826772BD5006D263F /* LocationScreenView.swift in Sources */,
 				A158910D26747F64006D263F /* Offsets.swift in Sources */,
 				A15890E126746958006D263F /* CharacterModel.swift in Sources */,
 				A158911026748287006D263F /* CharacterScreenViewModel.swift in Sources */,
+				A158916226780353006D263F /* RMDataBase.xcdatamodeld in Sources */,
+				A158916B26780841006D263F /* ICharacterStorage.swift in Sources */,
 				A158913B26772BE3006D263F /* LocationScreenViewController.swift in Sources */,
 				A158914726772D99006D263F /* LocationScreenTableAdapter.swift in Sources */,
 				A18BDC07267464E700CCD3C4 /* AppDelegate.swift in Sources */,
+				A158916826780832006D263F /* ILocationStorage.swift in Sources */,
 				A158914426772C94006D263F /* LocationScreenViewModel.swift in Sources */,
 				A15890F02674730A006D263F /* LocationModel.swift in Sources */,
 				A15890F4267476C7006D263F /* CharacterScreenViewController.swift in Sources */,
@@ -509,6 +541,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A158916026780353006D263F /* RMDataBase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A158916126780353006D263F /* RMDataBase.xcdatamodel */,
+			);
+			currentVersion = A158916126780353006D263F /* RMDataBase.xcdatamodel */;
+			path = RMDataBase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A18BDBFB267464E700CCD3C4 /* Project object */;
 }

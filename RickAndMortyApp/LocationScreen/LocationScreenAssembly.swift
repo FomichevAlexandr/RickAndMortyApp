@@ -9,9 +9,10 @@ import UIKit
 
 class LocationScreenAssembly
 {
-    static func build() -> UIViewController {
+    static func build(storage: ILocationStorage) -> UIViewController {
         let networkManager = NetworkManager()
-        let presenter = LocationScreenPresenter(networkManager: networkManager)
+        let interactor = LocationScreenInteractor(networkManager: networkManager, storage: storage)
+        let presenter = LocationScreenPresenter(interactor: interactor)
         let tableAdapter = LocationScreenTableAdapter()
         let viewController = LocationScreenViewController(presenter: presenter, tableAdapter: tableAdapter)
         return viewController

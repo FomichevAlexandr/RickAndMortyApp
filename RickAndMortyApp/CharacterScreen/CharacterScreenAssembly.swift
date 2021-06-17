@@ -9,9 +9,9 @@ import UIKit
 
 final class CharacterScreenAssembly
 {
-    static func build() -> UIViewController {
+    static func build(storage: ICharacterStorage) -> UIViewController {
         let networkManager = NetworkManager()
-        let interactor = CharacterScreenInteractor(networkManager: networkManager)
+        let interactor = CharacterScreenInteractor(networkManager: networkManager, storage: storage)
         let presenter = CharacterScreenPresenter(interactor: interactor)
         let viewController = CharacterScreenViewController(presenter: presenter)
         return viewController

@@ -18,7 +18,7 @@ enum NetworkError: Error {
 protocol INetworkmanager
 {
     func loadCharacter<T:Decodable>(urlString: String, modelType: T.Type, completion: @escaping (Result<T,Error>) -> Void)
-    func loadImage(urlString: String, completion: @escaping (Result<URL, Error>) -> Void)
+    func loadImage(urlString: String, completion: @escaping (Result<String, Error>) -> Void)
 }
     
 final class NetworkManager: INetworkmanager
@@ -52,29 +52,30 @@ final class NetworkManager: INetworkmanager
         dataTask.resume()
     }
     //TODO: Обработка наличия файла возможна не тут
-    func loadImage(urlString: String, completion: @escaping (Result<URL, Error>) -> Void) {
+    func loadImage(urlString: String, completion: @escaping (Result<String, Error>) -> Void) {
         let session = URLSession.shared
         guard let url = URL(string: urlString) else {
             completion(.failure(NetworkError.urlError))
             return
         }
+        
         let fileSavePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(url.lastPathComponent)
+        
         if FileManager.default.fileExists(atPath: fileSavePath.path){
-            print(fileSavePath)
-            completion(.success(fileSavePath))
+            completion(.success(fileSavePath.lastPathComponent))
         }
+        
         else {
             let urlRequest = URLRequest(url: url)
             let downloadTask = session.downloadTask(with: urlRequest, completionHandler: { tmpURL, response, error in
                 if let location = tmpURL {
                     do {
                         try FileManager.default.copyItem(at: location, to: fileSavePath)
-                        completion(.success(fileSavePath))
+                        completion(.success(fileSavePath.lastPathComponent))
                     }
                     catch (let error) {
                         print(error)
                     }
-
                 } else {
                     if let error = error {
                         print(error)

@@ -11,6 +11,7 @@ protocol ICharacterScreenInteractor
 {
     func getModel() -> [CharacterModel]
     func getModelWithNewCharacter(completion: @escaping ([CharacterModel]) -> Void)
+    func getData(filePath: String) -> Data?
 }
 
 final class CharacterScreenInteractor
@@ -18,22 +19,13 @@ final class CharacterScreenInteractor
     private let networkManager: INetworkmanager
     private var urlString = "https://rickandmortyapi.com/api/character/"
     private var characters: [CharacterModel]
-
-    init(networkManager: INetworkmanager) {
+    private let storage: ICharacterStorage
+    init(networkManager: INetworkmanager, storage: ICharacterStorage) {
         self.characters = []
         self.networkManager = networkManager
-        
+        self.storage = storage
     }
     
-//    private func downloadCharacters(from characterURLs: [String]?) {
-//        if let urls = characterURLs {
-//            for url in urls {
-//                if let character = loadCharacter(characterURL: url) {
-//                    self.characters.append(character)
-//                }
-//            }
-//        }
-//    }
     //TODO; обработка ошибок
     private func loadCharacter(completion: @escaping ([CharacterModel]) -> Void, characterURL: String) {
         self.networkManager.loadCharacter(urlString: characterURL, modelType: CharacterModel.self, completion: { [weak self] result in
@@ -42,7 +34,6 @@ final class CharacterScreenInteractor
                     self?.loadImage(completion: completion, character: character)
                 case .failure(let error):
                     print(error)
-                    
                 }
         })
     }
@@ -54,9 +45,11 @@ final class CharacterScreenInteractor
                 case .success(let characterLocationURL):
                     character.locationPath = characterLocationURL
                     self?.characters.append(character)
-                    if let characters = self?.characters{
-                        completion(characters)
-                    }
+                    self?.storage.saveCharacter(character: character, completion: {
+                        if let characters = self?.characters{
+                            completion(characters)
+                        }
+                    })
                 case .failure(let error):
                     print(error)
                 }
@@ -66,7 +59,13 @@ final class CharacterScreenInteractor
 
 extension CharacterScreenInteractor: ICharacterScreenInteractor
 {
+    func getData(filePath: String) -> Data? {
+        let fileSavePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filePath)
+        return try? Data(contentsOf: fileSavePath)
+    }
+    
     func getModel() -> [CharacterModel] {
+        self.characters = self.storage.getCharacters()
         return self.characters
     }
     

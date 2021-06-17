@@ -16,6 +16,7 @@ final class CharacterScreenViewController: UIViewController {
         self.presenter = presenter
         self.customView = CharacterScreenView()
         super.init(nibName: nil, bundle: nil)
+        self.title = "Персонажи"
     }
     
     required init?(coder: NSCoder) {
@@ -23,7 +24,7 @@ final class CharacterScreenViewController: UIViewController {
     }
     
     override func loadView() {
-        super.viewDidLoad()
+        super.loadView()
         self.view = self.customView
     }
     

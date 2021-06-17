@@ -12,7 +12,7 @@ final class CharacterScreenSubView : UIView
     private let descriptionLabel: UILabel
     private let imageView: UIImageView
     private let imageHeight = 300
-    private let fontSize: CGFloat = 18
+    private let fontSize: CGFloat = 24
     private let cornerRadius: CGFloat = 14
     
     override init(frame: CGRect = CGRect.zero) {

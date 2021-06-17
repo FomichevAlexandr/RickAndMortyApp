@@ -35,6 +35,7 @@ extension LocationScreenTableAdapter: ILocationScreenTableAdapter
         self.tableView?.reloadData()
     }
 }
+
 extension LocationScreenTableAdapter: UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

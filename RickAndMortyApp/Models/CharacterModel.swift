@@ -12,7 +12,24 @@ class CharacterModel: Decodable
     let name: String
     let species: String
     let image: String
-    var locationPath: URL?
+    var locationPath: String?
+    
+    init(id: Int, name: String, species: String, image: String, locationPath:String ) {
+        self.id = id
+        self.name = name
+        self.species = species
+        self.image = image
+        self.locationPath = locationPath
+    }
+    
+    init?(character: Characters) {
+        self.id = Int(character.id)
+        guard let name = character.name, let species = character.species, let image = character.image, let locationPath = character.locationPath else { return nil }
+        self.name = name
+        self.species = species
+        self.image = image
+        self.locationPath = locationPath
+    }
     
     enum CodingKeys: String, CodingKey
     {

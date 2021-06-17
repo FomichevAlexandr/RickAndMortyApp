@@ -18,6 +18,7 @@ class LocationScreenViewController: UIViewController {
         self.tableAdapter = tableAdapter
         self.customView = LocationScreenView()
         super.init(nibName: nil, bundle: nil)
+        self.title = "Локации"
     }
     
     required init?(coder: NSCoder) {
@@ -25,6 +26,7 @@ class LocationScreenViewController: UIViewController {
     }
     
     override func loadView() {
+        super.loadView()
         self.view = self.customView
         self.tableAdapter.tableView = self.customView.tableView
         self.tableAdapter.presenter = self.presenter
@@ -33,18 +35,6 @@ class LocationScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.viewDidload(view: self.customView, tableAdapter: self.tableAdapter)
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
