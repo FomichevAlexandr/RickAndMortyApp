@@ -25,22 +25,25 @@ final class CharacterScreenPresenter
             self.characterView?.update(vm: charactersViewModel)
         }
     }
-    //TODO: Посмореть на работу, почистить BD
+    
     private func getConverteModel(characters: [CharacterModel]) -> [CharacterScreenViewModel] {
         var model = [CharacterScreenViewModel]()
         for character in characters {
             if let locationPath = character.locationPath {
-                if let data = self.interactor.getData(filePath: locationPath) {
+                if let data = self.interactor.getImageData(filePath: locationPath) {
                     if let image = UIImage(data: data) {
                         let characterViewModel = CharacterScreenViewModel(name: character.name, species: character.species, image: image)
                         model.append(characterViewModel)
-                    } else {
+                    }
+                    else {
                         print("Could not make image from data")
                     }
-                } else {
+                }
+                else {
                     print("Could not recieve file patha from Interactor")
                 }
-            } else {
+            }
+            else {
                 print("Character has not location path")
             }
         }
@@ -63,3 +66,4 @@ extension CharacterScreenPresenter: ICharacterScreenPresenter
     }
 
 }
+

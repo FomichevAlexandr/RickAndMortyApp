@@ -16,11 +16,4 @@ final class CharacterScreenAssembly
         let viewController = CharacterScreenViewController(presenter: presenter)
         return viewController
     }
-    
-//    static func build(charcters: [String]) {
-//        let networkManager = NetworkManager()
-//        let presenter = CharacterScreenPresenter(networkManager: networkManager)
-//        let viewController = CharacterScreenViewController(presenter: presenter)
-//        return viewController
-//    }
 }

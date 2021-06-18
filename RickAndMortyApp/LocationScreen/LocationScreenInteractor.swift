@@ -10,6 +10,7 @@ protocol ILocationScreenInteractor
 {
     func getModel() -> [LocationModel]
     func getModelWithNewLocation(completion: @escaping ([LocationModel]) -> Void)
+    func removeLocation(locationID: Int, completion: @escaping () -> Void)
 }
 
 //TODO: добваить storage
@@ -32,9 +33,12 @@ final class LocationScreenInteractor
                 switch result {
                 case .success(let location):
                     self?.locations.append(location)
-                    self?.storage.saveLocation(location: location, completion: {
+                    self?.storage.saveLocation(location: location, completion: { [weak self] in
                         if let locations = self?.locations {
                             completion(locations)
+                        }
+                        else {
+                            completion([])
                         }
                     })
                 case .failure(let error):
@@ -54,6 +58,18 @@ final class LocationScreenInteractor
 
 extension  LocationScreenInteractor: ILocationScreenInteractor
 {
+    func removeLocation(locationID: Int, completion: @escaping () -> Void) {
+        if let index = self.locations.firstIndex(where: {$0.id == locationID}) {
+            self.locations.remove(at: index)
+            self.storage.remove(id: locationID, completion: {
+                completion()
+            })
+        } else {
+            return
+        }
+       
+    }
+    
     func getModel() -> [LocationModel] {
         self.locations = self.storage.getLocations()
         return self.locations

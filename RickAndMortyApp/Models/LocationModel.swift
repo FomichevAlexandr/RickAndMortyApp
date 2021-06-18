@@ -25,7 +25,7 @@ struct LocationModel: Decodable
     }
     
     init?(location: Locations) {
-        self.id = Int(location.id)
+        self.id = Int(location.uid)
         guard let name = location.name, let type = location.type else { return nil }
         self.name = name
         self.type = type

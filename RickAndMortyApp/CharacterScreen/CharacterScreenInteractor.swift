@@ -11,7 +11,7 @@ protocol ICharacterScreenInteractor
 {
     func getModel() -> [CharacterModel]
     func getModelWithNewCharacter(completion: @escaping ([CharacterModel]) -> Void)
-    func getData(filePath: String) -> Data?
+    func getImageData(filePath: String) -> Data?
 }
 
 final class CharacterScreenInteractor
@@ -26,40 +26,44 @@ final class CharacterScreenInteractor
         self.storage = storage
     }
     
-    //TODO; обработка ошибок
+    //TODO: обработка ошибок
     private func loadCharacter(completion: @escaping ([CharacterModel]) -> Void, characterURL: String) {
         self.networkManager.loadCharacter(urlString: characterURL, modelType: CharacterModel.self, completion: { [weak self] result in
-                switch result {
-                case .success(let character):
-                    self?.loadImage(completion: completion, character: character)
-                case .failure(let error):
-                    print(error)
-                }
+            switch result {
+            case .success(let character):
+                self?.loadImage(completion: completion, character: character)
+            case .failure(let error):
+                print(error)
+            }
         })
     }
     
     //TODO: Посмотреть на обработку ошибок
     private func loadImage(completion: @escaping ([CharacterModel]) -> Void, character: CharacterModel) {
-        self.networkManager.loadImage(urlString: character.image, completion: {[weak self] result in
-                switch result {
-                case .success(let characterLocationURL):
-                    character.locationPath = characterLocationURL
-                    self?.characters.append(character)
-                    self?.storage.saveCharacter(character: character, completion: {
-                        if let characters = self?.characters{
-                            completion(characters)
-                        }
-                    })
-                case .failure(let error):
-                    print(error)
-                }
+        self.networkManager.loadImage(urlString: character.image, completion: { [weak self] result in
+            switch result {
+            case .success(let characterLocationURL):
+                character.locationPath = characterLocationURL
+                self?.characters.append(character)
+                self?.storage.saveCharacter(character: character, completion: { [weak self] in
+                    if let characters = self?.characters{
+                        completion(characters)
+                    }
+                    else {
+                        completion([])
+                    }
+                })
+            case .failure(let error):
+                print(error)
+            }
         })
     }
 }
 
 extension CharacterScreenInteractor: ICharacterScreenInteractor
 {
-    func getData(filePath: String) -> Data? {
+    
+    func getImageData(filePath: String) -> Data? {
         let fileSavePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filePath)
         return try? Data(contentsOf: fileSavePath)
     }

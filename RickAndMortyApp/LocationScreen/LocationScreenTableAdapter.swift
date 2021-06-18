@@ -11,12 +11,12 @@ protocol ILocationScreenTableAdapter: AnyObject
 {
     var presenter: ILocationScreenPresenter? { get set}
     var tableView: UITableView? { get set}
-    func update(locations: [LocationScreenViewModel])
+    func update(locations: [LocationModel])
 }
 
 class LocationScreenTableAdapter: NSObject
 {
-    private var locations = [LocationScreenViewModel]()
+    private var locations = [LocationModel]()
     private let cellIdentifier = "locationCell"
     weak var presenter: ILocationScreenPresenter?
     weak var tableView: UITableView? {
@@ -30,7 +30,7 @@ class LocationScreenTableAdapter: NSObject
 
 extension LocationScreenTableAdapter: ILocationScreenTableAdapter
 {
-    func update(locations: [LocationScreenViewModel]) {
+    func update(locations: [LocationModel]) {
         self.locations = locations
         self.tableView?.reloadData()
     }
@@ -38,8 +38,13 @@ extension LocationScreenTableAdapter: ILocationScreenTableAdapter
 
 extension LocationScreenTableAdapter: UITableViewDelegate
 {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Click")
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить", handler: { (_, _, _) in
+            self.presenter?.onItemDelete(locationID: self.locations[indexPath.row].id)
+        })
+        deleteAction.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
 
@@ -50,7 +55,7 @@ extension LocationScreenTableAdapter: UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let location = locations[indexPath.row]
+        let location = self.locations[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
         content.text = location.name

@@ -9,6 +9,7 @@ import Foundation
 protocol ILocationScreenPresenter: AnyObject
 {
     func viewDidload(view: ILocationScreenView, tableAdapter: ILocationScreenTableAdapter)
+    func onItemDelete(locationID: Int)
 }
 
 final class LocationScreenPresenter
@@ -21,9 +22,9 @@ final class LocationScreenPresenter
         self.interactor = interactor
     }
     
-    private func update(vm: [LocationModel]) {
+    private func update(model: [LocationModel]) {
         DispatchQueue.main.async {
-            self.tableAdapter?.update(locations: vm.map { LocationScreenViewModel(name: $0.name, type: $0.type) })
+            self.tableAdapter?.update(locations: model)
         }
     }
     
@@ -31,15 +32,23 @@ final class LocationScreenPresenter
 
 extension LocationScreenPresenter: ILocationScreenPresenter
 {
+    func onItemDelete(locationID: Int) {
+        self.interactor.removeLocation(locationID: locationID, completion: { [weak self] in
+            if let model = self?.interactor.getModel() {
+                self?.update(model: model)
+            }
+        })
+    }
+    
     func viewDidload(view: ILocationScreenView, tableAdapter: ILocationScreenTableAdapter) {
         self.locationView = view
         self.locationView?.completeButtonAction { [weak self] in
             self?.interactor.getModelWithNewLocation(completion: { locations in
-                self?.update(vm: locations)
+                self?.update(model: locations)
             })
         }
         self.tableAdapter = tableAdapter
-        self.update(vm: self.interactor.getModel())
+        self.update(model: self.interactor.getModel())
     }
     
 }

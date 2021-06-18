@@ -117,9 +117,9 @@
 				A158914F26776F82006D263F /* LocationScreenAssembly.swift */,
 				A158913A26772BE3006D263F /* LocationScreenViewController.swift */,
 				A158913726772BD5006D263F /* LocationScreenView.swift */,
-				A158913D26772BF6006D263F /* LocationScreenPresenter.swift */,
 				A158914326772C94006D263F /* LocationScreenViewModel.swift */,
 				A158914626772D99006D263F /* LocationScreenTableAdapter.swift */,
+				A158913D26772BF6006D263F /* LocationScreenPresenter.swift */,
 				A158915D2677FC3E006D263F /* LocationScreenInteractor.swift */,
 			);
 			path = LocationScreen;

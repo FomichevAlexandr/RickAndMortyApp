@@ -25,6 +25,7 @@ extension CoreDataStorage: ICharacterStorage
 {
     
     func getCharacters() -> [CharacterModel] {
+        print(NSPersistentContainer.defaultDirectoryURL())
         let fetchRequest: NSFetchRequest<Characters> = Characters.fetchRequest()
         return (try? self.container.viewContext.fetch(fetchRequest).compactMap {CharacterModel(character: $0)}) ?? []
     }
@@ -66,6 +67,25 @@ extension CoreDataStorage: ICharacterStorage
 
 extension CoreDataStorage: ILocationStorage
 {
+    func remove(id: Int, completion: @escaping ()->Void) {
+        self.container.performBackgroundTask { context in
+            let fetchRequest: NSFetchRequest<Locations> = Locations.fetchRequest()
+            
+            fetchRequest.predicate = NSPredicate(format: "\(#keyPath(Locations.uid)) = %@", String(Int16(id)))
+            if let object = try? context.fetch(fetchRequest).first {
+                context.delete(object)
+                do {
+                    try context.save()
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                } catch (let error) {
+                    print(error)
+                }
+            }
+        }
+    }
+    
     func getLocations() -> [LocationModel] {
         let fetchRequest: NSFetchRequest<Locations> = Locations.fetchRequest()
         return (try? self.container.viewContext.fetch(fetchRequest).compactMap {LocationModel(location: $0)}) ?? []
@@ -79,7 +99,7 @@ extension CoreDataStorage: ILocationStorage
                 }
             }
             let object = Locations(context: context)
-            object.id = Int16(location.id)
+            object.uid = Int16(location.id)
             object.name = location.name
             object.type = location.type
             do {

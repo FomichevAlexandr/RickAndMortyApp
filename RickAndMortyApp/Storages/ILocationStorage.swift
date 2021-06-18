@@ -9,4 +9,5 @@ protocol ILocationStorage
 {
     func getLocations() -> [LocationModel]
     func saveLocation(location: LocationModel, completion: @escaping () -> Void)
+    func remove(id: Int, completion: @escaping ()->Void)
 }
