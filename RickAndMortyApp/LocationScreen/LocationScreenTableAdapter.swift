@@ -33,8 +33,10 @@ extension LocationScreenTableAdapter: UITableViewDelegate
 {
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить", handler: { (_, _, _) in
-            self.presenter?.onItemDelete(locationID: self.locations[indexPath.row].id)
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить", handler: {[weak self] (_, _, _) in
+            if let id = self?.locations[indexPath.row].id {
+                self?.presenter?.onItemDelete(locationID: id)
+            }
         })
         deleteAction.backgroundColor = .red
         return UISwipeActionsConfiguration(actions: [deleteAction])

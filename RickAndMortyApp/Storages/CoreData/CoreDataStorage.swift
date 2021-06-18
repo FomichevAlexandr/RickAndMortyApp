@@ -57,7 +57,9 @@ extension CoreDataStorage: ICharacterStorage
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try container.persistentStoreCoordinator.execute(deleteRequest, with: container.viewContext)
-            completion()
+            DispatchQueue.main.async {
+                completion()
+            }
         } catch (let error) {
             print(error)
         }

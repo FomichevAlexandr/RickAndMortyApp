@@ -9,5 +9,6 @@
 protocol ICharacterScreenView: AnyObject
 {
     func update(vm: [CharacterScreenViewModel])
-    func completeButtonAction(buttonAction: @escaping (() -> Void))
+    func completeDownloadButtonAction(buttonAction: @escaping (() -> Void))
+    func completeDeleteButtonAction(buttonAction: @escaping (() -> Void))
 }

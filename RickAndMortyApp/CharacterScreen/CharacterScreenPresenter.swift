@@ -53,8 +53,13 @@ extension CharacterScreenPresenter: ICharacterScreenPresenter
 {
     func viewDidLoad(characterScreenView: ICharacterScreenView) {
         self.characterView = characterScreenView
-        self.characterView?.completeButtonAction { [weak self] in
+        self.characterView?.completeDownloadButtonAction { [weak self] in
             self?.interactor.getModelWithNewCharacter(completion: { characters in
+                self?.updateView(characters: characters)
+            })
+        }
+        self.characterView?.completeDeleteButtonAction { [weak self] in
+            self?.interactor.deleteAllCharacters(completion: { characters in
                 self?.updateView(characters: characters)
             })
         }

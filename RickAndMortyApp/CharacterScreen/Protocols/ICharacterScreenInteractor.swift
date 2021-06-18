@@ -11,4 +11,5 @@ protocol ICharacterScreenInteractor
     func getModel() -> [CharacterModel]
     func getModelWithNewCharacter(completion: @escaping ([CharacterModel]) -> Void)
     func getImageData(filePath: String) -> Data?
+    func deleteAllCharacters(completion: @escaping ([CharacterModel]) -> Void)
 }

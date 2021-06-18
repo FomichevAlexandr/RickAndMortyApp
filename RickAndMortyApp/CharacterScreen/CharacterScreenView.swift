@@ -14,7 +14,9 @@ final class CharacterScreenView: UIView
     private var scrollView: UIScrollView
     private var innerView: UIView
     private var downloadButton: UIButton
-    private var buttonWasTapped: (() -> Void)?
+    private var deleteButton: UIButton
+    private var downloadButtonWasTapped: (() -> Void)?
+    private var deleteButtonWasTapped: (() -> Void)?
     private let buttonHeight = 40
     private let activityIndicator: UIActivityIndicatorView
     
@@ -23,6 +25,7 @@ final class CharacterScreenView: UIView
         self.scrollView = UIScrollView()
         self.innerView = UIView()
         self.downloadButton = UIButton()
+        self.deleteButton = UIButton()
         self.activityIndicator = UIActivityIndicatorView(style: .medium)
         super.init(frame: frame)
         self.addSubviews()
@@ -37,34 +40,50 @@ final class CharacterScreenView: UIView
     private func addSubviews() {
         self.addSubview(self.scrollView)
         self.addSubview(self.downloadButton)
+        self.addSubview(self.deleteButton)
     }
     
     private func configurateView() {
         self.backgroundColor = .mainBackgroundColor
         self.scrollView.backgroundColor = .mainBackgroundColor
         self.scrollView.addSubview(self.innerView)
-        self.configurateButton()
+        self.configurateButton(button: self.downloadButton, title: " Загрузить пресонажа ")
+        self.configurateButton(button: self.deleteButton, title: " Удалить всех персонажей ")
         self.makeButtonConstraints()
         self.makeInnerViewConstraints()
+        self.downloadButton.addTarget(self, action: #selector(self.downloadButtonAction), for: .touchUpInside)
+        self.deleteButton.addTarget(self, action: #selector(self.deleteButtonAction), for: .touchUpInside)
     }
     
-    private func configurateButton() {
-        self.downloadButton.backgroundColor = .customPinkColor
-        self.downloadButton.setTitle(" Загрузить персонажа ", for: .normal)
-        self.downloadButton.setTitleColor(.black, for: .normal)
-        self.downloadButton.setTitleColor(.gray, for: .highlighted)
-        self.downloadButton.layer.cornerRadius = 8
-        self.downloadButton.addTarget(self, action: #selector(self.buttonAction), for: .touchUpInside)
+    private func configurateButton(button: UIButton, title: String) {
+        button.backgroundColor = .customPinkColor
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
+        button.layer.cornerRadius = 8
     }
     
     @objc
-    private func buttonAction() {
-        self.buttonWasTapped?()
+    private func downloadButtonAction() {
+        self.downloadButtonWasTapped?()
+        self.addActivityIndicator()
+    }
+    
+    @objc
+    private func deleteButtonAction() {
+        self.deleteButtonWasTapped?()
         self.addActivityIndicator()
     }
     
     private func makeButtonConstraints() {
         self.downloadButton.snp.makeConstraints { make in
+            make.height.equalTo(self.buttonHeight)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(self.deleteButton.snp.top).offset(Offsets.bottom)
+            make.left.equalToSuperview().offset(Offsets.left)
+            make.right.equalToSuperview().offset(Offsets.right)
+        }
+        self.deleteButton.snp.makeConstraints { make in
             make.height.equalTo(self.buttonHeight)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(Offsets.bottom)
@@ -110,9 +129,12 @@ final class CharacterScreenView: UIView
 
 extension CharacterScreenView: ICharacterScreenView
 {
+    func completeDeleteButtonAction(buttonAction: @escaping (() -> Void)) {
+        self.deleteButtonWasTapped = buttonAction
+    }
     
-    func completeButtonAction(buttonAction: @escaping (() -> Void)) {
-        self.buttonWasTapped = buttonAction
+    func completeDownloadButtonAction(buttonAction: @escaping (() -> Void)) {
+        self.downloadButtonWasTapped = buttonAction
     }
 
     func update(vm: [CharacterScreenViewModel]) {

@@ -18,7 +18,6 @@ final class CharacterScreenInteractor
         self.characters = []
         self.networkManager = networkManager
         self.storage = storage
-        self.deleteAllCharacters()
     }
     
     private func loadCharacter(completion: @escaping ([CharacterModel]) -> Void, characterURL: String) {
@@ -52,7 +51,12 @@ final class CharacterScreenInteractor
         })
     }
     
-    private func deleteAllCharacters() {
+}
+
+extension CharacterScreenInteractor: ICharacterScreenInteractor
+{
+    
+    func deleteAllCharacters(completion: @escaping ([CharacterModel]) -> Void) {
         self.characters = self.storage.getCharacters()
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         for character in characters {
@@ -70,15 +74,13 @@ final class CharacterScreenInteractor
         self.storage.deleteAllCharacters { [weak self] in
             print("success")
             if let characters = self?.storage.getCharacters() {
-                print(characters)
+                completion(characters)
+            }
+            else {
+                completion([])
             }
         }
-        
     }
-}
-
-extension CharacterScreenInteractor: ICharacterScreenInteractor
-{
     
     func getImageData(filePath: String) -> Data? {
         let fileSavePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filePath)
