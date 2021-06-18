@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol ILocationScreenView: AnyObject
-{
-    func completeButtonAction(buttonAction: @escaping (() -> Void))
-}
 
 final class LocationScreenView: UIView
 {

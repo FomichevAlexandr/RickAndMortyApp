@@ -7,26 +7,20 @@
 
 import Foundation
 
-protocol ICharacterScreenInteractor
-{
-    func getModel() -> [CharacterModel]
-    func getModelWithNewCharacter(completion: @escaping ([CharacterModel]) -> Void)
-    func getImageData(filePath: String) -> Data?
-}
-
 final class CharacterScreenInteractor
 {
     private let networkManager: INetworkmanager
     private var urlString = "https://rickandmortyapi.com/api/character/"
     private var characters: [CharacterModel]
     private let storage: ICharacterStorage
+    
     init(networkManager: INetworkmanager, storage: ICharacterStorage) {
         self.characters = []
         self.networkManager = networkManager
         self.storage = storage
+        self.deleteAllCharacters()
     }
     
-    //TODO: обработка ошибок
     private func loadCharacter(completion: @escaping ([CharacterModel]) -> Void, characterURL: String) {
         self.networkManager.loadCharacter(urlString: characterURL, modelType: CharacterModel.self, completion: { [weak self] result in
             switch result {
@@ -38,7 +32,6 @@ final class CharacterScreenInteractor
         })
     }
     
-    //TODO: Посмотреть на обработку ошибок
     private func loadImage(completion: @escaping ([CharacterModel]) -> Void, character: CharacterModel) {
         self.networkManager.loadImage(urlString: character.image, completion: { [weak self] result in
             switch result {
@@ -57,6 +50,30 @@ final class CharacterScreenInteractor
                 print(error)
             }
         })
+    }
+    
+    private func deleteAllCharacters() {
+        self.characters = self.storage.getCharacters()
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        for character in characters {
+            if let fileName = character.locationPath {
+                let fileSavePath = directory.appendingPathComponent(fileName).path
+                if FileManager.default.fileExists(atPath: fileSavePath) {
+                    do {
+                        try FileManager.default.removeItem(atPath: fileSavePath)
+                    } catch (let error) {
+                        print(error)
+                    }
+                }
+            }
+        }
+        self.storage.deleteAllCharacters { [weak self] in
+            print("success")
+            if let characters = self?.storage.getCharacters() {
+                print(characters)
+            }
+        }
+        
     }
 }
 

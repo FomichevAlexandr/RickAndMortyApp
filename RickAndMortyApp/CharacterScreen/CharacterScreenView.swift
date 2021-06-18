@@ -8,12 +8,6 @@
 import UIKit
 import SnapKit
 
-protocol ICharacterScreenView: AnyObject
-{
-    func update(vm: [CharacterScreenViewModel])
-    func completeButtonAction(buttonAction: @escaping (() -> Void))
-}
-
 final class CharacterScreenView: UIView
 {
     private var characterSubViews: [CharacterScreenSubView]

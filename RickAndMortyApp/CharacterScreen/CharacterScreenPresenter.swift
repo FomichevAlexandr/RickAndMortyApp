@@ -6,10 +6,6 @@
 //
 import UIKit
 
-protocol ICharacterScreenPresenter {
-    func viewDidLoad(characterScreenView: ICharacterScreenView)
-}
-
 final class CharacterScreenPresenter
 {
     private weak var characterView: ICharacterScreenView?

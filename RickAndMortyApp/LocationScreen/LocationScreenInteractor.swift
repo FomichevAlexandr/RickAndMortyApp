@@ -6,14 +6,7 @@
 //
 
 import Foundation
-protocol ILocationScreenInteractor
-{
-    func getModel() -> [LocationModel]
-    func getModelWithNewLocation(completion: @escaping ([LocationModel]) -> Void)
-    func removeLocation(locationID: Int, completion: @escaping () -> Void)
-}
 
-//TODO: добваить storage
 final class LocationScreenInteractor
 {
     private var locations: [LocationModel]

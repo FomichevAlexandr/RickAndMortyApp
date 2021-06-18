@@ -7,13 +7,6 @@
 
 import UIKit
 
-protocol ILocationScreenTableAdapter: AnyObject
-{
-    var presenter: ILocationScreenPresenter? { get set}
-    var tableView: UITableView? { get set}
-    func update(locations: [LocationModel])
-}
-
 class LocationScreenTableAdapter: NSObject
 {
     private var locations = [LocationModel]()

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10AE3FD267C812B006C642D /* ICharacterScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10AE3FC267C812B006C642D /* ICharacterScreenView.swift */; };
+		A10AE400267C8154006C642D /* ICharacterScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10AE3FF267C8154006C642D /* ICharacterScreenPresenter.swift */; };
+		A10AE403267C8179006C642D /* ICharacterScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10AE402267C8179006C642D /* ICharacterScreenInteractor.swift */; };
+		A10AE408267C81DC006C642D /* ILocationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10AE407267C81DC006C642D /* ILocationScreenView.swift */; };
+		A10AE40B267C81FB006C642D /* ILocationScreenTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10AE40A267C81FB006C642D /* ILocationScreenTableAdapter.swift */; };
+		A10AE40E267C821B006C642D /* ILocationScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10AE40D267C821B006C642D /* ILocationScreenPresenter.swift */; };
+		A10AE411267C8236006C642D /* ILocationScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10AE410267C8236006C642D /* ILocationScreenInteractor.swift */; };
 		A15890E126746958006D263F /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15890E026746958006D263F /* CharacterModel.swift */; };
 		A15890F02674730A006D263F /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15890EF2674730A006D263F /* LocationModel.swift */; };
 		A15890F4267476C7006D263F /* CharacterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15890F3267476C7006D263F /* CharacterScreenViewController.swift */; };
@@ -21,7 +28,6 @@
 		A158913826772BD5006D263F /* LocationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158913726772BD5006D263F /* LocationScreenView.swift */; };
 		A158913B26772BE3006D263F /* LocationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158913A26772BE3006D263F /* LocationScreenViewController.swift */; };
 		A158913E26772BF6006D263F /* LocationScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158913D26772BF6006D263F /* LocationScreenPresenter.swift */; };
-		A158914426772C94006D263F /* LocationScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158914326772C94006D263F /* LocationScreenViewModel.swift */; };
 		A158914726772D99006D263F /* LocationScreenTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158914626772D99006D263F /* LocationScreenTableAdapter.swift */; };
 		A158915026776F82006D263F /* LocationScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158914F26776F82006D263F /* LocationScreenAssembly.swift */; };
 		A15891562677704A006D263F /* MainScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15891552677704A006D263F /* MainScreenAssembly.swift */; };
@@ -33,7 +39,6 @@
 		A158916B26780841006D263F /* ICharacterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158916A26780841006D263F /* ICharacterStorage.swift */; };
 		A18BDC07267464E700CCD3C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18BDC06267464E700CCD3C4 /* AppDelegate.swift */; };
 		A18BDC09267464E700CCD3C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18BDC08267464E700CCD3C4 /* SceneDelegate.swift */; };
-		A18BDC0E267464E700CCD3C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18BDC0C267464E700CCD3C4 /* Main.storyboard */; };
 		A18BDC10267464E800CCD3C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A18BDC0F267464E800CCD3C4 /* Assets.xcassets */; };
 		A18BDC13267464E800CCD3C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18BDC11267464E800CCD3C4 /* LaunchScreen.storyboard */; };
 		A472DBD313E4B4005CD34A6B /* Pods_RickAndMortyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5ACA2A3267372A1D82D6B8 /* Pods_RickAndMortyApp.framework */; };
@@ -42,6 +47,13 @@
 /* Begin PBXFileReference section */
 		0B5ACA2A3267372A1D82D6B8 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F969DA596F0319343F00699 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
+		A10AE3FC267C812B006C642D /* ICharacterScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICharacterScreenView.swift; sourceTree = "<group>"; };
+		A10AE3FF267C8154006C642D /* ICharacterScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICharacterScreenPresenter.swift; sourceTree = "<group>"; };
+		A10AE402267C8179006C642D /* ICharacterScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICharacterScreenInteractor.swift; sourceTree = "<group>"; };
+		A10AE407267C81DC006C642D /* ILocationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILocationScreenView.swift; sourceTree = "<group>"; };
+		A10AE40A267C81FB006C642D /* ILocationScreenTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILocationScreenTableAdapter.swift; sourceTree = "<group>"; };
+		A10AE40D267C821B006C642D /* ILocationScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILocationScreenPresenter.swift; sourceTree = "<group>"; };
+		A10AE410267C8236006C642D /* ILocationScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILocationScreenInteractor.swift; sourceTree = "<group>"; };
 		A15890E026746958006D263F /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		A15890EF2674730A006D263F /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		A15890F3267476C7006D263F /* CharacterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScreenViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +68,6 @@
 		A158913726772BD5006D263F /* LocationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenView.swift; sourceTree = "<group>"; };
 		A158913A26772BE3006D263F /* LocationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenViewController.swift; sourceTree = "<group>"; };
 		A158913D26772BF6006D263F /* LocationScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenPresenter.swift; sourceTree = "<group>"; };
-		A158914326772C94006D263F /* LocationScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenViewModel.swift; sourceTree = "<group>"; };
 		A158914626772D99006D263F /* LocationScreenTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenTableAdapter.swift; sourceTree = "<group>"; };
 		A158914F26776F82006D263F /* LocationScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreenAssembly.swift; sourceTree = "<group>"; };
 		A15891552677704A006D263F /* MainScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenAssembly.swift; sourceTree = "<group>"; };
@@ -69,7 +80,6 @@
 		A18BDC03267464E700CCD3C4 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18BDC06267464E700CCD3C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A18BDC08267464E700CCD3C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A18BDC0D267464E700CCD3C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A18BDC0F267464E800CCD3C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A18BDC12267464E800CCD3C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A18BDC14267464E800CCD3C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +98,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A10AE405267C81AC006C642D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A10AE3FC267C812B006C642D /* ICharacterScreenView.swift */,
+				A10AE3FF267C8154006C642D /* ICharacterScreenPresenter.swift */,
+				A10AE402267C8179006C642D /* ICharacterScreenInteractor.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A10AE413267C8266006C642D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A10AE407267C81DC006C642D /* ILocationScreenView.swift */,
+				A10AE40A267C81FB006C642D /* ILocationScreenTableAdapter.swift */,
+				A10AE40D267C821B006C642D /* ILocationScreenPresenter.swift */,
+				A10AE410267C8236006C642D /* ILocationScreenInteractor.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A10AE415267C8315006C642D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A158911A2674BD2D006D263F /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A10AE417267C8391006C642D /* Supported Files */ = {
+			isa = PBXGroup;
+			children = (
+				A18BDC06267464E700CCD3C4 /* AppDelegate.swift */,
+				A18BDC08267464E700CCD3C4 /* SceneDelegate.swift */,
+				A18BDC11267464E800CCD3C4 /* LaunchScreen.storyboard */,
+				A158910C26747F64006D263F /* Offsets.swift */,
+			);
+			path = "Supported Files";
+			sourceTree = "<group>";
+		};
+		A10AE41A267C83D3006C642D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A158911726749C1C006D263F /* ColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A10AE41C267C8442006C642D /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A15891552677704A006D263F /* MainScreenAssembly.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
 		A15891062674785E006D263F /* CharacterScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +164,7 @@
 				A15891022674781A006D263F /* CharacterScreenPresenter.swift */,
 				A158910F26748287006D263F /* CharacterScreenViewModel.swift */,
 				A158915A2677BAF1006D263F /* CharacterScreenInteractor.swift */,
+				A10AE405267C81AC006C642D /* Protocols */,
 			);
 			path = CharacterScreen;
 			sourceTree = "<group>";
@@ -117,10 +184,10 @@
 				A158914F26776F82006D263F /* LocationScreenAssembly.swift */,
 				A158913A26772BE3006D263F /* LocationScreenViewController.swift */,
 				A158913726772BD5006D263F /* LocationScreenView.swift */,
-				A158914326772C94006D263F /* LocationScreenViewModel.swift */,
 				A158914626772D99006D263F /* LocationScreenTableAdapter.swift */,
 				A158913D26772BF6006D263F /* LocationScreenPresenter.swift */,
 				A158915D2677FC3E006D263F /* LocationScreenInteractor.swift */,
+				A10AE413267C8266006C642D /* Protocols */,
 			);
 			path = LocationScreen;
 			sourceTree = "<group>";
@@ -165,19 +232,15 @@
 		A18BDC05267464E700CCD3C4 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
-				A18BDC06267464E700CCD3C4 /* AppDelegate.swift */,
-				A18BDC08267464E700CCD3C4 /* SceneDelegate.swift */,
+				A18BDC0F267464E800CCD3C4 /* Assets.xcassets */,
+				A18BDC14267464E800CCD3C4 /* Info.plist */,
+				A10AE417267C8391006C642D /* Supported Files */,
 				A158910826747870006D263F /* Models */,
 				A15891062674785E006D263F /* CharacterScreen */,
 				A158914026772C3B006D263F /* LocationScreen */,
-				A18BDC0C267464E700CCD3C4 /* Main.storyboard */,
-				A18BDC0F267464E800CCD3C4 /* Assets.xcassets */,
-				A18BDC11267464E800CCD3C4 /* LaunchScreen.storyboard */,
-				A18BDC14267464E800CCD3C4 /* Info.plist */,
-				A158910C26747F64006D263F /* Offsets.swift */,
-				A158911726749C1C006D263F /* ColorExtension.swift */,
-				A158911A2674BD2D006D263F /* NetworkManager.swift */,
-				A15891552677704A006D263F /* MainScreenAssembly.swift */,
+				A10AE41A267C83D3006C642D /* Extensions */,
+				A10AE415267C8315006C642D /* Network */,
+				A10AE41C267C8442006C642D /* MainScreen */,
 				A158916D26780858006D263F /* Storages */,
 			);
 			path = RickAndMortyApp;
@@ -261,7 +324,6 @@
 			files = (
 				A18BDC13267464E800CCD3C4 /* LaunchScreen.storyboard in Resources */,
 				A18BDC10267464E800CCD3C4 /* Assets.xcassets in Resources */,
-				A18BDC0E267464E700CCD3C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,26 +380,32 @@
 				A158911B2674BD2D006D263F /* NetworkManager.swift in Sources */,
 				A158913826772BD5006D263F /* LocationScreenView.swift in Sources */,
 				A158910D26747F64006D263F /* Offsets.swift in Sources */,
+				A10AE40E267C821B006C642D /* ILocationScreenPresenter.swift in Sources */,
 				A15890E126746958006D263F /* CharacterModel.swift in Sources */,
 				A158911026748287006D263F /* CharacterScreenViewModel.swift in Sources */,
 				A158916226780353006D263F /* RMDataBase.xcdatamodeld in Sources */,
 				A158916B26780841006D263F /* ICharacterStorage.swift in Sources */,
 				A158913B26772BE3006D263F /* LocationScreenViewController.swift in Sources */,
 				A158914726772D99006D263F /* LocationScreenTableAdapter.swift in Sources */,
+				A10AE3FD267C812B006C642D /* ICharacterScreenView.swift in Sources */,
 				A18BDC07267464E700CCD3C4 /* AppDelegate.swift in Sources */,
 				A158916826780832006D263F /* ILocationStorage.swift in Sources */,
-				A158914426772C94006D263F /* LocationScreenViewModel.swift in Sources */,
 				A15890F02674730A006D263F /* LocationModel.swift in Sources */,
 				A15890F4267476C7006D263F /* CharacterScreenViewController.swift in Sources */,
 				A158913E26772BF6006D263F /* LocationScreenPresenter.swift in Sources */,
 				A158915B2677BAF1006D263F /* CharacterScreenInteractor.swift in Sources */,
 				A15890F8267476EA006D263F /* CharacterScreenSubView.swift in Sources */,
 				A18BDC09267464E700CCD3C4 /* SceneDelegate.swift in Sources */,
+				A10AE400267C8154006C642D /* ICharacterScreenPresenter.swift in Sources */,
 				A15891032674781A006D263F /* CharacterScreenPresenter.swift in Sources */,
 				A158915026776F82006D263F /* LocationScreenAssembly.swift in Sources */,
+				A10AE411267C8236006C642D /* ILocationScreenInteractor.swift in Sources */,
 				A15891562677704A006D263F /* MainScreenAssembly.swift in Sources */,
+				A10AE408267C81DC006C642D /* ILocationScreenView.swift in Sources */,
 				A158911826749C1C006D263F /* ColorExtension.swift in Sources */,
+				A10AE403267C8179006C642D /* ICharacterScreenInteractor.swift in Sources */,
 				A1589100267477BD006D263F /* CharacterScreenView.swift in Sources */,
+				A10AE40B267C81FB006C642D /* ILocationScreenTableAdapter.swift in Sources */,
 				A158912A26763E01006D263F /* CharacterScreenAssembly.swift in Sources */,
 				A158915E2677FC3E006D263F /* LocationScreenInteractor.swift in Sources */,
 			);
@@ -346,14 +414,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A18BDC0C267464E700CCD3C4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A18BDC0D267464E700CCD3C4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A18BDC11267464E800CCD3C4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

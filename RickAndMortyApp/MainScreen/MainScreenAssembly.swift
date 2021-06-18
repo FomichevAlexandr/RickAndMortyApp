@@ -18,7 +18,6 @@ final class MainScreenAssembly
         tabBarController.setViewControllers([characterVC, locationVC], animated: true)
         locationVC.tabBarItem.image = UIImage(systemName: "location.fill")
         characterVC.tabBarItem.image = UIImage(systemName: "person.fill")
-        
         return tabBarController
     }
 }

@@ -6,11 +6,6 @@
 //
 
 import Foundation
-protocol ILocationScreenPresenter: AnyObject
-{
-    func viewDidload(view: ILocationScreenView, tableAdapter: ILocationScreenTableAdapter)
-    func onItemDelete(locationID: Int)
-}
 
 final class LocationScreenPresenter
 {
